@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.UUID;
+
 @RequestMapping("api/v1/person")
 @RestController
 public class PersonController {
@@ -26,4 +28,12 @@ public class PersonController {
     {
         return personService.getAllPeople();
     }
+
+    void deletePerson(@PathVariable UUID id)
+    {
+        personService.deletePerson(id);
+    }
+    
+
+
 }
