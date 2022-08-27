@@ -28,16 +28,16 @@ public class PersonService {
         return dao.SelectAll();
     }
 
-    public int updatePerson(UUID id, Person person)
+    public int updatePerson(int id, Person person)
     {
         return  dao.updatePerson(id,person);
     }
-    public int deletePerson(UUID id)
+    public int deletePerson(int id)
     {
         return  dao.deletePerson(id);
     }
 
-    public Optional<Person> GetPerson(UUID id)
+    public Optional<Person> GetPerson(int id)
     {
         return dao.selectPersonById(id);
     }

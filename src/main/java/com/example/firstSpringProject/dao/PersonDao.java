@@ -4,19 +4,22 @@ import com.example.firstSpringProject.model.Person;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.Random;
 import java.util.UUID;
 
 public interface PersonDao {
-    int insertPerson( UUID id, Person p);
+    Random rand = new Random();
+
+    int insertPerson( int id, Person p);
     default int insertPerson(Person p){
-        UUID id = UUID.randomUUID();
+        int id = rand.nextInt();
         return insertPerson(id , p);
     }
 
     List<Person> SelectAll();
 
-    Optional<Person> selectPersonById(UUID id );
-    int deletePerson(UUID id);
+    Optional<Person> selectPersonById(int id );
+    int deletePerson(int id);
 
-    int updatePerson(UUID id, Person person);
+    int updatePerson(int id, Person person);
 }

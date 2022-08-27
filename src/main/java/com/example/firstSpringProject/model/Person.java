@@ -1,25 +1,38 @@
 package com.example.firstSpringProject.model;
+import javax.persistence.Entity;
+import javax.persistence.Id;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.util.UUID;
-
+@Entity
 public class Person
 {
-    private final UUID id;
-    private final String name;
+    @Id
+    private  int id;
+    private  String name;
 
-    public Person(@JsonProperty("id") UUID id,
+    public Person() {    }
+    public Person(@JsonProperty("id") int id,
                   @JsonProperty("name") String name) {
         this.id = id;
         this.name = name;
     }
 
-    public UUID getId() {
+    public Person(
+                  @JsonProperty("name") String name) {
+        this.name = name;
+    }
+
+
+    public int getId() {
         return id;
     }
 
     public String getName() {
         return name;
     }
+
+    public void setName(String name)
+    {this.name=name;}
 }

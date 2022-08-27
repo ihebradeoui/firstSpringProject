@@ -11,7 +11,7 @@ import java.util.UUID;
 public class FakePersonDao implements  PersonDao{
     private ArrayList<Person> db = new ArrayList<Person>();
 
-    public int insertPerson(UUID id, Person p)
+    public int insertPerson(int id, Person p)
     {
         db.add(new Person(id , p.getName()));
         return 1;
@@ -23,13 +23,13 @@ public class FakePersonDao implements  PersonDao{
     }
 
     @Override
-    public Optional<Person> selectPersonById(UUID id) {
-        return db.stream().filter(person -> person.getId().equals(id))
+    public Optional<Person> selectPersonById(int id) {
+        return db.stream().filter(person -> person.getId() == id)
                             .findFirst();
     }
 
     @Override
-    public int deletePerson(UUID id) {
+    public int deletePerson(int id) {
         Optional<Person> personMaybe = selectPersonById(id);
         if(personMaybe.isEmpty()) {
             return 0;
@@ -39,7 +39,7 @@ public class FakePersonDao implements  PersonDao{
     }
 
     @Override
-    public int updatePerson(UUID id, Person person) {
+    public int updatePerson(int id, Person person) {
         if(deletePerson(id) == 1)
         {
             db.add(person);
